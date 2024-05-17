@@ -30,7 +30,7 @@ java -jar TheMaze.jar
 4. ウィンドウは以下のような状態で立ち上がるので、ゲームをプレイする場合は`START`ボタンを押してスタートしてください。
 ゲームを終了する場合は`EXIT`ボタンで終了することができます。
 
-![ゲームウィンドウ](./src/start_window.png)
+![ゲームウィンドウ](./src_readme/start_window.png)
 
 
 ## ゲームの遊び方
