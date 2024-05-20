@@ -9,6 +9,12 @@
 また、ゲームはSTARTするたびに中身が変わる仕組みとなっています。
 何度でも挑戦してみてください！
 
+
+
+https://github.com/FujiyamaMasatoshi/TheMaze/assets/168803336/88cc0c11-53e4-4533-9f48-6f1483832e39
+
+
+
 ## 起動条件
 このゲームはjavaを使用して作成されているので、OpenJDKをインストールしてください。
 
