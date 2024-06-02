@@ -41,17 +41,17 @@ class Trap{
         }else{
             RandomJudge = random.nextInt(100);
         }
-        if(0 <= RandomJudge && RandomJudge <= 29){
+        if(0 <= RandomJudge && RandomJudge <= 15){
             //2. life -1
             pc.life -= 1;
             //確認のためのprint
             System.out.println("Player have "+pc.life+" lifes");
-        }else if(30 <= RandomJudge && RandomJudge <= 39){
+        }else if(16 <= RandomJudge && RandomJudge <= 25){
             //3. 初期位置に戻される
             pc.InitPosition(maze);
             //確認
             System.out.println("Player went to InitPosition");
-        }else if(40 <= RandomJudge && RandomJudge <= 49){
+        }else if(26 <= RandomJudge && RandomJudge <= 35){
             //4. ランダム場所に移動
             Random place = new Random();
             int x_RandomPrace = place.nextInt(maze.MAZE_VERTICAL*5);
@@ -63,7 +63,7 @@ class Trap{
             pc.setPosition(x_RandomPrace, y_RandomPrace);
             //確認
             System.out.println("Player went to RandoPosition");
-        }else if(50 <= RandomJudge && RandomJudge <= 69){
+        }else if(36 <= RandomJudge && RandomJudge <= 66){
             //5. 懐中電灯をgetして明るさを広くする
             try {
                 MazeView.img_kurayami = ImageIO.read(new File("kurayami_wide.png"));
@@ -73,7 +73,7 @@ class Trap{
             }
             //確認
             System.out.println("Player got a light");
-        }else if(70 <= RandomJudge && RandomJudge <= 89){
+        }else if(67 <= RandomJudge && RandomJudge <= 95){
             //6. keyの位置を返す
             /*まずは上方向(配列上の添字が小さい方向)なのか下方向なのか
             (配列上の添字が大きい方向)を判定する
@@ -293,8 +293,8 @@ class Player extends Observable{
 
 class MazeModel{
     public int BlockSize = 90; /* Viewで使うBlockの大きさ*/
-    public int MAZE_VERTICAL = 41; /**Mazeのタテ大きさ */
-    public int MAZE_WIDTH = 41; /**Mazeの横の大きさ */
+    public int MAZE_VERTICAL = 21; /**Mazeのタテ大きさ */
+    public int MAZE_WIDTH = 21; /**Mazeの横の大きさ */
 
     //keyの位置を保存
     public int key_x;
@@ -315,35 +315,6 @@ class MazeModel{
     /**MazeArrayから実際に表示させるために使う配列を作る */
     public char[][] ViewArray = new char [MAZE_VERTICAL*5][MAZE_WIDTH*5];
     private int i = 0, j = 0; //0 <=i <= MAZE_VERTICAL-1; 0 <= j <= MAZE_WIDTH-1
-
-    // //テキストファイルからMazeを読み込む
-    // public void FileRead(){
-    //     try{
-    //         String filename = "Maze.txt";
-    //         // String filename = "MazeArray1.txt"; //テスト用
-    //         File file = new File(filename);
-    //         FileReader filereader = new FileReader(file);
-
-    //         int ch;
-    //         int i = 0; int j = 0;
-    //         while((ch = filereader.read()) != -1){
-    //             if((char)ch != ','){
-    //                 if((char)ch == '\n'){
-    //                     j = 0; i++;
-    //                 }else{
-    //                     MazeArray[i][j] = (char)ch;
-    //                     j++;
-    //                 }
-    //             }
-    //         }
-    //         filereader.close();
-    //     }catch(FileNotFoundException e){
-    //         System.out.println(e);
-    //     }catch(IOException e){
-    //         System.out.println(e);
-    //     }
-    //     // PrintMazeArray();
-    // }
 
     public char WALL = '#';
     public char PATH = ' ';
@@ -370,6 +341,12 @@ class MazeModel{
         int startY = random.nextInt(MAZE_VERTICAL / 2) * 2 + 1;
         MazeArray[startY][startX] = START; // set start pos
 
+        // #######################
+        // テストプレイモード (通常 or .jarファイル)
+        // 1. 大きさを21*21にする (41*41)
+        // 2. 宝箱を10個にする (20)
+        // #######################
+
         // make maze
         carvePassages(startX, startY);
 
@@ -378,7 +355,7 @@ class MazeModel{
         // MazeArray[0][startX] = 'g';
 
         // set treasures
-        SetTreasures(20);
+        SetTreasures(10);
 
         // set key
         SetKey(); 
